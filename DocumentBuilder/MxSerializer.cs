@@ -40,7 +40,7 @@ public class MxSerializer
         mxCellElement.Add(new XAttribute(MxAttributeNames.Edge, mxCell.Edge ? "1" : "0"));
         mxCellElement.Add(new XAttribute(MxAttributeNames.Vertex, mxCell.Vertex ? "1" : "0"));
 
-        mxCellElement.Add(mxCell.Parent != null ? new XAttribute(MxAttributeNames.Parent, mxCell.Parent.Value) : null);
+        mxCellElement.Add(mxCell.Parent != null ? new XAttribute(MxAttributeNames.Parent, mxCell.Parent) : null);
         mxCellElement.Add(mxCell.Source != null ? new XAttribute(MxAttributeNames.Source, mxCell.Source.Value) : null);
         mxCellElement.Add(mxCell.Target != null ? new XAttribute(MxAttributeNames.Target, mxCell.Target.Value) : null);
     }

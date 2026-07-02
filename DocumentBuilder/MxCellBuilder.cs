@@ -4,26 +4,26 @@ namespace DrawmateLib.DocumentBuilder;
 
 public class MxCellBuilder
 {
-    private int _cellCount = 1; // Tracks IDs automatically
-
-    // Core state for the cell we are currently building
+    private int _cellCount = 1;
     private string _label = "";
     private string _styleName = "";
     private MxGeometry? _geometry;
-    private bool _connectable;
-    private bool _vertex;
-    private bool _edge;
+    private MxId? _source;
+    private MxId? _target;
+    private string _parent = "1";
 
     public MxCellBuilder CreateNew(string label, string styleName)
     {
         _label = label;
         _styleName = styleName;
+
         // Reset defaults for a new cell
+        _parent = "1";
+        _source = null;
+        _target = null;
         _geometry = null;
-        _connectable = false;
-        _vertex = false;
-        _edge = false;
-        return this; // Returning 'this' allows method chaining!
+
+        return this;
     }
 
     public MxCellBuilder WithGeometry(decimal x, decimal y, int width, int height)
@@ -32,16 +32,17 @@ public class MxCellBuilder
         return this;
     }
 
-    public MxCellBuilder AsVertex()
+    public MxCellBuilder WithConnection(MxId source, MxId target)
     {
-        _vertex = true;
-        _connectable = true;
+        _source = source;
+        _target = target;
+        _geometry = new MxGeometry(relative: true);
         return this;
     }
 
-    public MxCellBuilder AsEdge()
+    public MxCellBuilder WithCustomParent(string parentId)
     {
-        _edge = true;
+        _parent = parentId;
         return this;
     }
 
@@ -49,15 +50,30 @@ public class MxCellBuilder
     {
         var id = new MxId(_cellCount++);
         var style = new MxGraphStyle(_styleName);
+        var cell = new MxCell(_label, id, style)
+        {
+            Parent = _parent
+        };
 
-        var cell = _geometry != null
-            ? new MxCell(_label, id, style, _geometry)
-            : new MxCell(_label, id, style);
+        if (_geometry != null)
+        {
+            cell.Geometry = _geometry;
+            if (_geometry.Relative)
+            {
+                cell.Source = _source;
+                cell.Target = _target;
 
-        cell.Connectable = _connectable;
-        cell.Vertex = _vertex;
-        cell.Edge = _edge;
-
+                cell.Edge = true;
+                cell.Vertex = false;
+                cell.Connectable = false;
+            }
+            else
+            {
+                cell.Vertex = true;
+                cell.Connectable = true;
+                cell.Edge = false;
+            }
+        }
         return cell;
     }
 }

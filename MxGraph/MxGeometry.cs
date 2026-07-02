@@ -14,6 +14,11 @@ public class MxGeometry
 
     }
 
+    public MxGeometry(bool relative)
+    {
+        Relative = relative;
+    }
+
     public MxGeometry(decimal x, decimal y, int width, int height)
     {
         X = x;
