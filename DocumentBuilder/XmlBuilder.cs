@@ -1,4 +1,5 @@
 using System.Xml.Linq;
+using DrawmateLib.MxGraph;
 
 namespace DrawmateLib.DocumentBuilder;
 
@@ -19,6 +20,8 @@ public class XmlBuilder
     {
         MxFileElement.Add(DiagramElement);
         DiagramElement.Add(MxGraphModelElement);
+        SetDiagramAttributes();
+
         MxGraphModelElement.Add(RootElement);
         // Add Top Level MxCell Elements
         RootElement.Add(
@@ -40,6 +43,9 @@ public class XmlBuilder
 
     private void SetDiagramAttributes()
     {
-
+        DiagramElement.Add(
+            new XAttribute(MxAttributeNames.Page, "Page-1"),
+            new XAttribute(MxAttributeNames.Id, new MxId())
+        );
     }
 }

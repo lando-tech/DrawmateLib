@@ -11,6 +11,10 @@ public class MxId
             .Select(i => (char)i)];
     private int DefaultIdSize { get; set; } = 20;
 
+    public MxId()
+    {
+        Value = GenerateIdWithoutPostfix();
+    }
 
     public MxId(int cellCount)
     {
@@ -33,6 +37,18 @@ public class MxId
             sb.Append(AlphanumericList[randIdx]);
         }
         sb.Append($"-{cellCount}");
+        return sb.ToString();
+    }
+
+    private string GenerateIdWithoutPostfix()
+    {
+        var rand = new Random();
+        var sb = new StringBuilder();
+        for (int i = 0; i < DefaultIdSize; ++i)
+        {
+            int randIdx = rand.Next(AlphanumericList.Count - 1);
+            sb.Append(AlphanumericList[randIdx]);
+        }
         return sb.ToString();
     }
 }
