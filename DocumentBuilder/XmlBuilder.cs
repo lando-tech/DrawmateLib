@@ -1,51 +1,50 @@
 using System.Xml.Linq;
-using DrawmateLib.MxGraph;
 
 namespace DrawmateLib.DocumentBuilder;
 
 public class XmlBuilder
 {
-    public XDocument RootDocument { get; }
+    public XDocument RootDocument { get; } = new XDocument();
     public XDeclaration Declaration { get; }
     public XElement MxFileElement { get; } = new XElement(MxElementNames.MxFile);
-    public XElement DiagramElement { get; } = new XElement(MxElementNames.Diagram);
-    public XElement MxGraphModelElement { get; } = new XElement(MxElementNames.MxGraphModel);
+    public XElement DiagramElement { get; }
+    public XElement MxGraphModelElement { get; }
     public XElement RootElement { get; } = new XElement(MxElementNames.Root);
 
-    public XmlBuilder() : this("1.0", "utf-8", "yes")
+    public XmlBuilder(XDeclaration xmlDeclaration)
     {
+        DiagramElement = new XElement(MxElementNames.Diagram);
+        MxGraphModelElement = new XElement(MxElementNames.MxGraphModel);
+        Declaration = xmlDeclaration;
+        BuildDocumentTree();
     }
 
-    public XmlBuilder(string? version, string? encoding, string? standalone)
+    public XmlBuilder(XDeclaration xmlDeclaration, XElement mxGraphModelElement)
+    {
+        DiagramElement = new XElement(MxElementNames.Diagram);
+        MxGraphModelElement = mxGraphModelElement;
+        Declaration = xmlDeclaration;
+        BuildDocumentTree();
+    }
+
+    public XmlBuilder(XDeclaration xmlDeclaration, XElement diagramElement, XElement mxGraphModelElement)
+    {
+        DiagramElement = diagramElement;
+        MxGraphModelElement = mxGraphModelElement;
+        Declaration = xmlDeclaration;
+        BuildDocumentTree();
+    }
+
+    private void BuildDocumentTree()
     {
         MxFileElement.Add(DiagramElement);
         DiagramElement.Add(MxGraphModelElement);
-        SetDiagramAttributes();
-
-        MxGraphModelElement.Add(RootElement);
-        // Add Top Level MxCell Elements
         RootElement.Add(
             new XElement(MxElementNames.MxCell, new XAttribute(MxAttributeNames.Id, "0")),
             new XElement(MxElementNames.MxCell, new XAttribute(MxAttributeNames.Id, "1"), new XAttribute(MxAttributeNames.Parent, "0"))
         );
 
-        Declaration = new XDeclaration(version, encoding, standalone);
-        RootDocument = new XDocument(
-            Declaration,
-            MxFileElement
-        );
-    }
-
-    private void SetMxGraphModelAttributes()
-    {
-
-    }
-
-    private void SetDiagramAttributes()
-    {
-        DiagramElement.Add(
-            new XAttribute(MxAttributeNames.Page, "Page-1"),
-            new XAttribute(MxAttributeNames.Id, new MxId())
-        );
+        RootDocument.Add(Declaration);
+        RootDocument.Add(MxFileElement);
     }
 }

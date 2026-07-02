@@ -30,6 +30,13 @@ public class MxSerializer
         return new XElement(MxElementNames.MxArray);
     }
 
+    public XElement SerializeMxGraphModel(MxGraphModel mxGraphModel)
+    {
+        var mxGraphElement = new XElement(MxElementNames.MxGraphModel);
+        AddMxGraphModelAttributes(mxGraphElement, mxGraphModel);
+        return mxGraphElement;
+    }
+
     private static void AddMxCellAttributes(XElement mxCellElement, MxCell mxCell)
     {
         mxCellElement.Add(new XAttribute(MxAttributeNames.Id, mxCell.Id.Value));
@@ -55,5 +62,12 @@ public class MxSerializer
 
         mxGeometryElement.Add(new XAttribute(MxAttributeNames.As, mxGeometry.As));
         mxGeometryElement.Add(mxGeometry.Relative ? new XAttribute(MxAttributeNames.Relative, "1") : null);
+    }
+
+    private static void AddMxGraphModelAttributes(XElement mxGraphElement, MxGraphModel mxGraphModel)
+    {
+        mxGraphElement.Add(new XAttribute(MxAttributeNames.Dx, mxGraphModel.Dx));
+        mxGraphElement.Add(new XAttribute(MxAttributeNames.Dy, mxGraphModel.Dy));
+        mxGraphElement.Add(new XAttribute(MxAttributeNames.PageHeight, mxGraphModel.PageHeight));
     }
 }

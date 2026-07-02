@@ -1,6 +1,7 @@
-﻿using DrawmateLib.DocumentBuilder;
+﻿using System.Xml.Linq;
+using DrawmateLib.DocumentBuilder;
 
-var builder = new XmlBuilder();
+var builder = new XmlBuilder(new XDeclaration("1.0", "utf-8", "yes"));
 var doc = builder.RootDocument;
 var root = builder.RootElement;
 
