@@ -1,0 +1,78 @@
+{
+  "MX_GRAPH_XML_STYLES": {
+    "text-box": "text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;",
+    "text-box-filled": "text;html=1;strokeColor=black;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;",
+    "text-box-left-justified": "text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=nowrap;rounded=0;",
+    "text-box-right-justified": "text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=nowrap;rounded=0;",
+    "rect": "rounded=0;whiteSpace=wrap;html=1;",
+    "arrow": "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;exitX=1;entryY=0.5;entryDx=0;entryDy=0;",
+    "arrow2": "edgeStyle=loopEdgeStyle;strokeColor=#55A1FF;orthogonalloop=0;rounded=0;jettySize=auto;html=1",
+    "arrow3": "edgeStyle=none;html=1",
+    "arrow4": "edgeStyle=none;html=1;exitX=1;exitY=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;",
+    "blue-arrow": "edgeStyle=none;html=1;exitX=1;exitY=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#6a00ff;strokeColor=#3700CC",
+    "hidden_arrow_start": "edgeStyle=none;startArrow=none;html=1;",
+    "hidden_arrow_end": "edgeStyle=none;endArrow=none;html=1;",
+    "hidden_arrow": "edgeStyle=none;html=1;startArrow=none;endArrow=none",
+    "elipse": "ellipse;whiteSpace=wrap;html=1;aspect=fixed;"
+  },
+  "MX_OBJECT_ATTRIBUTES": {
+    "label": "",
+    "type": "",
+    "id": ""
+  },
+  "TOP_LEVEL_MX_CELL": {
+    "id": "0",
+    "parent": "0"
+  },
+  "MX_CELL_ATTRIBUTES": {
+    "id": "",
+    "value": "",
+    "style": "",
+    "parent": "1",
+    "connectable": "",
+    "edge": "",
+    "vertex": "",
+    "source": "",
+    "target": ""
+  },
+  "MX_GEOMETRY_ATTRIBUTES": {
+    "x": "",
+    "y": "",
+    "width": "",
+    "height": "",
+    "relative": "",
+    "as": "geometry"
+  },
+  "MX_POINT_ATTRIBUTES": {
+    "x": "",
+    "y": "",
+    "as": [
+      "targetPoint",
+      "sourcePoint",
+      "offset"
+    ]
+  },
+  "MX_ARRAY_ATTRIBUTES": {
+    "as": ""
+  },
+  "MX_GRAPH_MODEL_ATTRIBUTES": {
+    "dx": "4000",
+    "dy": "4000",
+    "grid": "1",
+    "gridSize": "10",
+    "guides": "1",
+    "tooltips": "1",
+    "connect": "1",
+    "arrows": "1",
+    "fold": "1",
+    "pageScale": "1",
+    "pageWidth": "3500",
+    "pageHeight": "2500",
+    "math": "0",
+    "shadow": "0"
+  },
+  "DIAGRAM_ATTRIBUTES": {
+    "name": "Page-1",
+    "id": ""
+  }
+}
