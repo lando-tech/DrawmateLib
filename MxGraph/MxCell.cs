@@ -13,10 +13,18 @@ public class MxCell
     public bool Connectable { get; set; } = false;
     public bool Edge { get; set; } = false;
 
-    public MxCell(string label, string style, int cellCount)
+    public MxCell(string label, MxId id, MxGraphStyle mxGraphStyle)
     {
         ValueLabel = label;
-        Style = new MxGraphStyle(style);
-        Id = new MxId(cellCount);
+        Style = mxGraphStyle;
+        Id = id;
+    }
+
+    public MxCell(string label, MxId id, MxGraphStyle mxGraphStyle, MxGeometry mxGeometry)
+    {
+        ValueLabel = label;
+        Style = mxGraphStyle;
+        Geometry = mxGeometry;
+        Id = id;
     }
 }
