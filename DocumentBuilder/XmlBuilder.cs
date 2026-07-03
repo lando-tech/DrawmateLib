@@ -4,34 +4,36 @@ namespace DrawmateLib.DocumentBuilder;
 
 public class XmlBuilder
 {
-    public XDocument RootDocument { get; } = new XDocument();
-    public XDeclaration Declaration { get; }
-    public XElement MxFileElement { get; } = new XElement(MxElementNames.MxFile);
+    public XDocument RootDocument { get; set; }
+    public XElement MxFileElement { get; set; }
     public XElement DiagramElement { get; }
-    public XElement MxGraphModelElement { get; }
-    public XElement RootElement { get; } = new XElement(MxElementNames.Root);
+    public XElement MxGraphModelElement { get; set; }
+    public XElement RootElement { get; } = new XElement(MxElement.Root);
 
     public XmlBuilder(XDeclaration xmlDeclaration)
     {
-        DiagramElement = new XElement(MxElementNames.Diagram);
-        MxGraphModelElement = new XElement(MxElementNames.MxGraphModel);
-        Declaration = xmlDeclaration;
+        RootDocument = new XDocument(xmlDeclaration);
+        MxFileElement = new XElement(MxElement.MxFile);
+        DiagramElement = new XElement(MxElement.Diagram);
+        MxGraphModelElement = new XElement(MxElement.MxGraphModel);
         BuildDocumentTree();
     }
 
     public XmlBuilder(XDeclaration xmlDeclaration, XElement mxGraphModelElement)
     {
-        DiagramElement = new XElement(MxElementNames.Diagram);
+        RootDocument = new XDocument(xmlDeclaration);
+        MxFileElement = new XElement(MxElement.MxFile);
+        DiagramElement = new XElement(MxElement.Diagram);
         MxGraphModelElement = mxGraphModelElement;
-        Declaration = xmlDeclaration;
         BuildDocumentTree();
     }
 
     public XmlBuilder(XDeclaration xmlDeclaration, XElement diagramElement, XElement mxGraphModelElement)
     {
+        RootDocument = new XDocument(xmlDeclaration);
+        MxFileElement = new XElement(MxElement.MxFile);
         DiagramElement = diagramElement;
         MxGraphModelElement = mxGraphModelElement;
-        Declaration = xmlDeclaration;
         BuildDocumentTree();
     }
 
@@ -40,11 +42,10 @@ public class XmlBuilder
         MxFileElement.Add(DiagramElement);
         DiagramElement.Add(MxGraphModelElement);
         RootElement.Add(
-            new XElement(MxElementNames.MxCell, new XAttribute(MxAttributeNames.Id, "0")),
-            new XElement(MxElementNames.MxCell, new XAttribute(MxAttributeNames.Id, "1"), new XAttribute(MxAttributeNames.Parent, "0"))
+            new XElement(MxElement.MxCell, new XAttribute(MxAttribute.Id, "0")),
+            new XElement(MxElement.MxCell, new XAttribute(MxAttribute.Id, "1"), new XAttribute(MxAttribute.Parent, "0"))
         );
-
-        RootDocument.Add(Declaration);
+        MxGraphModelElement.Add(RootElement);
         RootDocument.Add(MxFileElement);
     }
 }

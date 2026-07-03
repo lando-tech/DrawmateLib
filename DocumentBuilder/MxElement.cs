@@ -2,7 +2,7 @@ using System.Xml.Linq;
 
 namespace DrawmateLib.DocumentBuilder;
 
-public static class MxElementNames
+public static class MxElement
 {
     public static readonly XName MxFile = "mxfile";
     public static readonly XName Diagram = "diagram";

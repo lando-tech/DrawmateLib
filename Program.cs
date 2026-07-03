@@ -1,11 +1,34 @@
 ﻿using System.Xml.Linq;
 using DrawmateLib.DocumentBuilder;
+using DrawmateLib.MxGraph;
 
-var builder = new XmlBuilder(new XDeclaration("1.0", "utf-8", "yes"));
+var mxSerializer = new MxSerializer();
+
+var diagram = new Diagram("Page-1", new MxId());
+var mxGraphModel = new MxGraphModel()
+{
+    Dx = 4000,
+    Dy = 4000,
+    PageHeight = 3000,
+    PageWidth = 3000,
+    PageScale = 10,
+    GridSize = 10,
+    MxFlags = MxGraphModelFlags.Grid | MxGraphModelFlags.Guides | MxGraphModelFlags.ToolTips
+};
+var declaration = new XDeclaration("1.0", "utf-8", "yes");
+
+var diagramElement = mxSerializer.SerializeDiagram(diagram);
+var mxGraphModelElement = mxSerializer.SerializeMxGraphModel(mxGraphModel);
+
+var builder = new XmlBuilder(
+    declaration,
+    diagramElement,
+    mxGraphModelElement
+);
+
 var doc = builder.RootDocument;
 var root = builder.RootElement;
 
-var mxSerializer = new MxSerializer();
 
 var mxCellOne = new MxCellBuilder()
     .CreateNew("This is a label", "textbox;alignVertical")

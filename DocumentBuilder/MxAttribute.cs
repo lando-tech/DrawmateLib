@@ -1,8 +1,10 @@
+using System.ComponentModel;
 using System.Xml.Linq;
+using DrawmateLib.MxGraph;
 
 namespace DrawmateLib.DocumentBuilder;
 
-public static class MxAttributeNames
+public static class MxAttribute
 {
     public static readonly XName Id = "id";
     /// <summary>
@@ -13,6 +15,7 @@ public static class MxAttributeNames
     /// </summary>
     public static readonly XName Value = "value";
     public static readonly XName Label = "label";
+    public static readonly XName Name = "name";
     public static readonly XName Type = "type";
     public static readonly XName Style = "style";
     public static readonly XName Parent = "parent";
@@ -43,4 +46,20 @@ public static class MxAttributeNames
     public static readonly XName Background = "background";
     public static readonly XName Math = "math";
     public static readonly XName Shadow = "shadow";
+
+    public static XName MatchNameWithFlag(MxGraphModelFlags flag)
+    {
+        return flag switch
+        {
+            MxGraphModelFlags.Grid => Grid,
+            MxGraphModelFlags.Guides => Guides,
+            MxGraphModelFlags.ToolTips => ToolTips,
+            MxGraphModelFlags.Connect => Connect,
+            MxGraphModelFlags.Arrows => Arrows,
+            MxGraphModelFlags.Fold => Fold,
+            MxGraphModelFlags.Math => Math,
+            MxGraphModelFlags.Shadow => Shadow,
+            _ => throw new ArgumentException($"Unable to match: {flag} to a MxAttribute Name"),
+        };
+    }
 }
