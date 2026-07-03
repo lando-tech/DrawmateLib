@@ -33,7 +33,9 @@
     "edge": "",
     "vertex": "",
     "source": "",
-    "target": ""
+    "target": "",
+    "visible": "",
+    "collapsed": ""
   },
   "MX_GEOMETRY_ATTRIBUTES": {
     "x": "",

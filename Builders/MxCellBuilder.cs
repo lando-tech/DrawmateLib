@@ -12,7 +12,7 @@ public class MxCellBuilder
     private MxId? _target;
     private string _parent = "1";
 
-    public MxCellBuilder CreateNew(string label, string styleName)
+    public MxCellBuilder Create(string label, string styleName)
     {
         _label = label;
         _styleName = styleName;

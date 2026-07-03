@@ -30,13 +30,20 @@ var builder = new XmlBuilder(
 var doc = builder.RootDocument;
 var root = builder.RootElement;
 
+var mxStyleBuilder = new MxStyleBuilder();
+var mxStyle = mxStyleBuilder
+    .Create()
+    .TextBox()
+    .WithVerticalAlignment("middle")
+    .WithTextWrapping()
+    .Build();
 
 var mxCellOne = new MxCellBuilder()
-    .CreateNew("This is a label", "textbox;alignVertical")
+    .Create("This is a label", mxStyle.Value)
     .WithGeometry(25.0m, 25.0m, 50, 50)
     .Build();
 
 var mxCellElement = mxSerializer.SerializeMxCell(mxCellOne);
 root.Add(mxCellElement);
 
-doc.Save(Console.Out);
+doc.Save("test.drawio.xml");

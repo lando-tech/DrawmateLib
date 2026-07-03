@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "mxGraphStyle",
+  "description": "JSON Schema validating common mxGraph and draw.io style string properties.",
+  "type": "object",
+  "properties": {
+    "shape": {
+      "type": "string",
+      "description": "The primitive shape type.",
+      "enum": ["rectangle", "ellipse", "rhombus", "cylinder", "line", "actor", "cloud", "swimlane", "step", "hexagon", "triangle", "tee", "parallelogram", "label"]
+    },
+    "rounded": {
+      "type": "integer",
+      "description": "Toggles rounded corners for shapes and lines.",
+      "enum": [0, 1]
+    },
+    "arcSize": {
+      "type": "number",
+      "description": "The radius or percentage sizing of the rounded corner."
+    },
+    "flipH": {
+      "type": "integer",
+      "description": "Flips the shape horizontally.",
+      "enum": [0, 1]
+    },
+    "flipV": {
+      "type": "integer",
+      "description": "Flips the shape vertically.",
+      "enum": [0, 1]
+    },
+    "rotation": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 360,
+      "description": "The angle of rotation in degrees clockwise."
+    },
+    "aspect": {
+      "type": "string",
+      "description": "Locks aspect ratio during manual resizing if set to fixed.",
+      "enum": ["fixed", "variable"]
+    },
+    "fillColor": {
+      "type": "string",
+      "description": "The primary background color of the shape (Hex, html color, or 'none')."
+    },
+    "strokeColor": {
+      "type": "string",
+      "description": "The border color of the shape or the line color of an edge."
+    },
+    "gradientColor": {
+      "type": "string",
+      "description": "The destination color for a background gradient."
+    },
+    "gradientDirection": {
+      "type": "string",
+      "description": "The direction towards which the gradientColor blends.",
+      "enum": ["north", "south", "east", "west"]
+    },
+    "opacity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Alpha transparency of the entire cell (0-100)."
+    },
+    "fillOpacity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Alpha transparency of only the shape fill (0-100)."
+    },
+    "strokeOpacity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Alpha transparency of only the shape border/edge line (0-100)."
+    },
+    "strokeWidth": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Thickness of the border or edge line in pixels."
+    },
+    "dashed": {
+      "type": "integer",
+      "description": "Turns on dashed lines if 1.",
+      "enum": [0, 1]
+    },
+    "dashPattern": {
+      "type": "string",
+      "description": "Custom dash sequence of space-separated numbers (e.g., '5 5')."
+    },
+    "shadow": {
+      "type": "integer",
+      "description": "Toggles a generic drop shadow behind the cell.",
+      "enum": [0, 1]
+    },
+    "fontColor": {
+      "type": "string",
+      "description": "Hex or text color of the label."
+    },
+    "fontFamily": {
+      "type": "string",
+      "description": "The font family name."
+    },
+    "fontSize": {
+      "type": "number",
+      "minimum": 1,
+      "description": "Text size in pixels."
+    },
+    "fontStyle": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Style flags bitmask. 0=Normal, 1=Bold, 2=Italic, 4=Underline. Add values together to combine styles."
+    },
+    "align": {
+      "type": "string",
+      "description": "Horizontal text alignment relative to the cell boundary.",
+      "enum": ["left", "center", "right"]
+    },
+    "verticalAlign": {
+      "type": "string",
+      "description": "Vertical text alignment relative to the cell boundary.",
+      "enum": ["top", "middle", "bottom"]
+    },
+    "labelBackgroundColor": {
+      "type": "string",
+      "description": "Background color for the text bounding box."
+    },
+    "labelBorderColor": {
+      "type": "string",
+      "description": "Border color for the text bounding box."
+    },
+    "whiteSpace": {
+      "type": "string",
+      "description": "Forces text to wrap automatically based on cell width if set to 'wrap'.",
+      "enum": ["wrap"]
+    },
+    "edgeStyle": {
+      "type": "string",
+      "description": "The routing algorithm used for edges.",
+      "enum": ["orthogonalEdgeStyle", "entityRelationEdgeStyle", "elbowEdgeStyle", "segmentEdgeStyle", "sideToSideEdgeStyle", "topToBottomEdgeStyle"]
+    },
+    "elbow": {
+      "type": "string",
+      "description": "Direction of the bend if edgeStyle is elbowEdgeStyle.",
+      "enum": ["horizontal", "vertical"]
+    },
+    "curved": {
+      "type": "integer",
+      "description": "Smooths out structural bends into Bezier curves.",
+      "enum": [0, 1]
+    },
+    "orthogonalLoop": {
+      "type": "integer",
+      "description": "Whether an orthogonal route should try to avoid looping through the cell it's connected to.",
+      "enum": [0, 1]
+    },
+    "jettySize": {
+      "oneOf": [
+        { "type": "integer" },
+        { "type": "string", "enum": ["auto"] }
+      ],
+      "description": "The length of the straight line segment (jetty) coming out of a port before the router is allowed to bend."
+    },
+    "html": {
+      "type": "integer",
+      "description": "Toggles whether text labels should be rendered using basic HTML tags.",
+      "enum": [0, 1]
+    },
+    "exitX": {
+      "type": "number",
+      "description": "The relative X coordinate where an edge leaves the source node boundary (0.0 to 1.0)."
+    },
+    "exitY": {
+      "type": "number",
+      "description": "The relative Y coordinate where an edge leaves the source node boundary (0.0 to 1.0)."
+    },
+    "exitDx": {
+      "type": "number",
+      "description": "Absolute pixel offset in the X axis for the edge departure point."
+    },
+    "exitDy": {
+      "type": "number",
+      "description": "Absolute pixel offset in the Y axis for the edge departure point."
+    },
+    "entryX": {
+      "type": "number",
+      "description": "The relative X coordinate where an edge enters the target node boundary (0.0 to 1.0)."
+    },
+    "entryY": {
+      "type": "number",
+      "description": "The relative Y coordinate where an edge enters the target node boundary (0.0 to 1.0)."
+    },
+    "entryDx": {
+      "type": "number",
+      "description": "Absolute pixel offset in the X axis for the edge entry point."
+    },
+    "entryDy": {
+      "type": "number",
+      "description": "Absolute pixel offset in the Y axis for the edge entry point."
+    },
+    "startArrow": {
+      "type": "string",
+      "description": "Marker shape at the start of the line.",
+      "enum": ["none", "classic", "block", "open", "diamond", "oval", "dash", "cross", "async"]
+    },
+    "endArrow": {
+      "type": "string",
+      "description": "Marker shape at the end of the line.",
+      "enum": ["none", "classic", "block", "open", "diamond", "oval", "dash", "cross", "async"]
+    },
+    "startSize": {
+      "type": "number",
+      "description": "Scale size of the start arrow marker."
+    },
+    "endSize": {
+      "type": "number",
+      "description": "Scale size of the end arrow marker."
+    },
+    "perimeter": {
+      "type": "string",
+      "description": "Defines how lines visually connect to the boundary of the node.",
+      "enum": ["rectanglePerimeter", "ellipsePerimeter", "rhombusPerimeter", "trianglePerimeter", "hexagonPerimeter"]
+    },
+    "portConstraint": {
+      "type": "string",
+      "description": "Restricts edge attachments to specific sides of a node.",
+      "enum": ["north", "south", "east", "west"]
+    },
+    "swimlaneLine": {
+      "type": "integer",
+      "description": "Draws a line dividing the header from the body in a swimlane shape.",
+      "enum": [0, 1]
+    }
+  },
+  "additionalProperties": true
+}
