@@ -1,6 +1,7 @@
 ﻿using System.Xml.Linq;
-using DrawmateLib.DocumentBuilder;
-using DrawmateLib.MxGraph;
+using DrawmateLib.Builders;
+using DrawmateLib.Serializers;
+using DrawmateLib.MxGraphModels;
 
 var mxSerializer = new MxSerializer();
 

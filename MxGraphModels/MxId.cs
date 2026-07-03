@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace DrawmateLib.MxGraph;
+namespace DrawmateLib.MxGraphModels;
 
 public class MxId
 {

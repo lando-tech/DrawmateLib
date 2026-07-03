@@ -1,6 +1,6 @@
-using DrawmateLib.MxGraph;
+using DrawmateLib.MxGraphModels;
 
-namespace DrawmateLib.DocumentBuilder;
+namespace DrawmateLib.Builders;
 
 public class MxCellBuilder
 {

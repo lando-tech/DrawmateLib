@@ -1,6 +1,7 @@
 using System.Xml.Linq;
+using DrawmateLib.MxGraphModels;
 
-namespace DrawmateLib.DocumentBuilder;
+namespace DrawmateLib.Builders;
 
 public class XmlBuilder
 {

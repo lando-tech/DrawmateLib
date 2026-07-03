@@ -1,6 +1,6 @@
 using System.Xml.Linq;
 
-namespace DrawmateLib.DocumentBuilder;
+namespace DrawmateLib.MxGraphModels;
 
 public static class MxElement
 {
