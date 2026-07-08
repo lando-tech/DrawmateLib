@@ -8,16 +8,16 @@ namespace DrawmateLib.DocumentContexts;
 
 public class DrawmateContext
 {
-    private readonly XElement diagramElement;
-    private readonly XElement mxGraphModelElement;
-    private readonly MxSerializer serializer = new();
+    private readonly MxSerializer _serializer = new();
+    private readonly XmlBuilder _xmlBuilder;
 
-    private readonly XmlBuilder xmlBuilder;
-
+    /// <summary>
+    /// Sets the top level XML Elements with sane defaults
+    /// </summary>
     public DrawmateContext()
     {
-        diagramElement = serializer.SerializeDiagram(new Diagram("Page-1", new MxId()));
-        mxGraphModelElement = serializer.SerializeMxGraphModel(new MxGraphModel()
+        var diagramElement = _serializer.SerializeDiagram(new Diagram("Page-1", new MxId()));
+        var mxGraphModelElement = _serializer.SerializeMxGraphModel(new MxGraphModel()
         {
             Dx = DrawioCommon.MxGraphModelCommon.Dx,
             Dy = DrawioCommon.MxGraphModelCommon.Dy,
@@ -27,24 +27,38 @@ public class DrawmateContext
             GridSize = DrawioCommon.MxGraphModelCommon.GridSize,
             MxFlags = DrawioCommon.MxGraphModelCommon.Flags
         });
-        xmlBuilder = new(new XDeclaration("1.0", "utf-8", "yes"), diagramElement, mxGraphModelElement);
+        _xmlBuilder = new XmlBuilder(new XDeclaration("1.0", "utf-8", "yes"), diagramElement, mxGraphModelElement);
+    }
+
+    /// <summary>
+    ///  Creates the XmlBuilder instance with the provided top-level XML Elements (Diagram and MxGraphModel)
+    /// and the custom XDeclaration
+    /// </summary>
+    /// <param name="diagram"></param>
+    /// <param name="mxGraphModel"></param>
+    /// <param name="xDeclaration"></param>
+    public DrawmateContext(Diagram diagram, MxGraphModel mxGraphModel, XDeclaration xDeclaration)
+    {
+        var diagramElement = _serializer.SerializeDiagram(diagram);
+        var mxGraphModelElement = _serializer.SerializeMxGraphModel(mxGraphModel);
+        _xmlBuilder = new XmlBuilder(xDeclaration, diagramElement, mxGraphModelElement);
     }
 
     public void AddMxCell(MxCell mxCell)
     {
-        xmlBuilder.RootElement.Add(serializer.SerializeMxCell(mxCell));
+        _xmlBuilder.RootElement.Add(_serializer.SerializeMxCell(mxCell));
     }
 
     public void AddMxCells(IEnumerable<MxCell> mxCells)
     {
         foreach (var cell in mxCells)
         {
-            xmlBuilder.RootElement.Add(serializer.SerializeMxCell(cell));
+            _xmlBuilder.RootElement.Add(_serializer.SerializeMxCell(cell));
         }
     }
 
     public void SaveDiagram(string diagramPath)
     {
-        xmlBuilder.RootDocument.Save(diagramPath);
+        _xmlBuilder.RootDocument.Save(diagramPath);
     }
 }

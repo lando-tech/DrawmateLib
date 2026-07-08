@@ -1,8 +1,11 @@
 using System.Xml.Linq;
-using DrawmateLib.MxGraphModels;
 
 namespace DrawmateLib.MxGraphModels;
 
+/// <summary>
+/// The MxAttribute class serves as a definition for common draw.io
+/// XML attributes across various XML elements.
+/// </summary>
 public static class MxAttribute
 {
     public static readonly XName Id = "id";
@@ -46,6 +49,12 @@ public static class MxAttribute
     public static readonly XName Math = "math";
     public static readonly XName Shadow = "shadow";
 
+    /// <summary>
+    /// Match the MxGraphModelFlag name with the proper XML attribute name
+    /// </summary>
+    /// <param name="flag">The flag to match</param>
+    /// <returns>XName</returns>
+    /// <exception cref="ArgumentException"></exception>
     public static XName MatchNameWithFlag(MxGraphModelFlags flag)
     {
         return flag switch

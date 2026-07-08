@@ -1,5 +1,9 @@
 namespace DrawmateLib.MxGraphModels;
 
+/// <summary>
+/// MxCell is the most common object used in draw.io and represents
+/// all objects on the graph.
+/// </summary>
 public class MxCell
 {
     public readonly MxId Id;
@@ -8,7 +12,7 @@ public class MxCell
     public string? Parent { get; set; } = null;
     public MxGeometry? Geometry { get; set; } = null;
     public MxGraphStyle Style { get; set; }
-    public string? ValueLabel { get; set; } = "";
+    public string? ValueLabel { get; set; }
     public bool Vertex { get; set; } = false;
     public bool Connectable { get; set; } = false;
     public bool Edge { get; set; } = false;

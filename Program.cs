@@ -27,7 +27,11 @@ var edgeOne = mxCellBuilder
     .AsEdge(mxCellOne.Id, mxCellTwo.Id)
     .Build();
 
+string homePath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+string fileName = "test.drawio.xml";
+string filePath = $"{homePath}/Documents/{fileName}";
+
 drawmateContext.AddMxCell(mxCellOne);
 drawmateContext.AddMxCell(mxCellTwo);
 drawmateContext.AddMxCell(edgeOne);
-drawmateContext.SaveDiagram("./DrawioTestFiles/test5.drawio.xml");
+drawmateContext.SaveDiagram(filePath);
