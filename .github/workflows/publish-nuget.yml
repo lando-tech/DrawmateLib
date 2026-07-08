@@ -5,6 +5,11 @@ on:
     tags:
       - "v*"
   workflow_dispatch:
+    inputs:
+      nuget_username:
+        description: "NuGet.org username (optional override if repo variable is missing)"
+        required: false
+        type: string
 
 jobs:
   publish:
@@ -31,11 +36,31 @@ jobs:
       - name: Pack
         run: dotnet pack DrawmateLib.csproj -c Release --no-build -o ./artifacts /p:ContinuousIntegrationBuild=true
 
+      - name: Resolve NuGet username
+        id: resolve_user
+        shell: bash
+        env:
+          INPUT_USER: ${{ github.event.inputs.nuget_username }}
+          VAR_USER: ${{ vars.NUGET_USERNAME }}
+        run: |
+          set -euo pipefail
+          USERNAME="${INPUT_USER:-}"
+          if [[ -z "$USERNAME" ]]; then
+            USERNAME="${VAR_USER:-}"
+          fi
+
+          if [[ -z "$USERNAME" ]]; then
+            echo "::error::NuGet username is missing. Set repository variable NUGET_USERNAME or provide workflow input nuget_username."
+            exit 1
+          fi
+
+          echo "username=$USERNAME" >> "$GITHUB_OUTPUT"
+
       - name: NuGet Login (OIDC)
         id: nuget_login
         uses: NuGet/login@v1
         with:
-          user: ${{ vars.NUGET_USERNAME }}
+          user: ${{ steps.resolve_user.outputs.username }}
 
       - name: Publish to NuGet.org
         run: dotnet nuget push "./artifacts/*.nupkg" --api-key "${{ steps.nuget_login.outputs.NUGET_API_KEY }}" --source "https://api.nuget.org/v3/index.json"
