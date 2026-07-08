@@ -1,15 +1,11 @@
 using DrawmateLib.MxGraphModels;
+using DrawmateLib.Styles;
 
 namespace DrawmateLib.Builders;
 
 public class MxStyleBuilder
 {
-    private MxGraphStyle _style;
-
-    public MxStyleBuilder()
-    {
-        _style = new MxGraphStyle();
-    }
+    private readonly MxGraphStyle _style = new();
 
     public MxStyleBuilder Create()
     {
@@ -19,12 +15,7 @@ public class MxStyleBuilder
 
     public MxStyleBuilder TextBox()
     {
-        _style.ValueBuilder.Append("text;");
-        return this;
-    }
-
-    public MxStyleBuilder Rectangle()
-    {
+        _style.ValueBuilder.Append($"{MxStyleConstants.Shapes.Text};");
         return this;
     }
 
@@ -42,7 +33,7 @@ public class MxStyleBuilder
 
     public MxStyleBuilder WithRounded(bool isRounded)
     {
-        _style.ValueBuilder.Append($"rounded=" + (isRounded ? "1" : "0") + ";");
+        _style.ValueBuilder.Append(isRounded ? $"{MxStyleConstants.Shapes.Rounded};" : "rounded=0;");
         return this;
     }
 
@@ -58,10 +49,10 @@ public class MxStyleBuilder
         return this;
     }
 
-    public MxStyleBuilder WithTextWrapping()
+    public MxStyleBuilder WithCommonAttributes()
     {
-        _style.ValueBuilder.Append("whiteSpace=wrap;");
-        _style.ValueBuilder.Append("html=1;");
+        _style.ValueBuilder.Append($"{MxStyleConstants.Common.WhiteSpaceWrap};");
+        _style.ValueBuilder.Append($"{MxStyleConstants.Common.Html};");
         return this;
     }
 
@@ -71,8 +62,42 @@ public class MxStyleBuilder
         return this;
     }
 
-    public MxGraphStyle Build()
+    public MxStyleBuilder Rectangle()
     {
+        _style.ValueBuilder.Append($"{MxStyleConstants.Shapes.Sharp};");
+        return this;
+    }
+
+    public MxStyleBuilder Ellipse()
+    {
+        _style.ValueBuilder.Append($"{MxStyleConstants.Shapes.Ellipse};");
+        return this;
+    }
+
+    public MxStyleBuilder Rhombus()
+    {
+        _style.ValueBuilder.Append($"{MxStyleConstants.Shapes.Rhombus};");
+        return this;
+    }
+
+    public MxStyleBuilder Triangle()
+    {
+        _style.ValueBuilder.Append($"{MxStyleConstants.Shapes.Triangle};");
+        return this;
+    }
+
+    public MxStyleBuilder WithShape(string shape)
+    {
+        _style.ValueBuilder.Append($"shape={shape};");
+        return this;
+    }
+
+    public MxGraphStyle Build(bool withCommonAttributes)
+    {
+        if (withCommonAttributes)
+        {
+            WithCommonAttributes();
+        }
         _style.Value = _style.ValueBuilder.ToString();
         return _style;
     }

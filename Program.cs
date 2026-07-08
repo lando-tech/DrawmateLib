@@ -33,10 +33,8 @@ var root = builder.RootElement;
 var mxStyleBuilder = new MxStyleBuilder();
 var mxStyle = mxStyleBuilder
     .Create()
-    .TextBox()
-    .WithVerticalAlignment("middle")
-    .WithTextWrapping()
-    .Build();
+    .Rectangle()
+    .Build(withCommonAttributes: true);
 
 var mxCellOne = new MxCellBuilder()
     .Create("This is a label", mxStyle.Value)
@@ -46,4 +44,4 @@ var mxCellOne = new MxCellBuilder()
 var mxCellElement = mxSerializer.SerializeMxCell(mxCellOne);
 root.Add(mxCellElement);
 
-doc.Save("test.drawio.xml");
+doc.Save("./DrawioTestFiles/test.drawio.xml");
