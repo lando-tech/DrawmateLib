@@ -1,5 +1,9 @@
-﻿using DrawmateLib.Builders;
+using DrawmateLib.Builders;
 using DrawmateLib.DocumentContexts;
+
+// -------------------------------------------------------
+// Sample: Build a simple draw.io diagram with DrawmateLib
+// -------------------------------------------------------
 
 var drawmateContext = new DrawmateContext();
 var mxStyleBuilder = new MxStyleBuilder();
@@ -40,3 +44,5 @@ drawmateContext.AddMxCell(mxCellTwo);
 drawmateContext.AddMxCell(mxCellThree);
 drawmateContext.AddMxCell(edgeOne);
 drawmateContext.SaveDiagram(filePath);
+
+Console.WriteLine($"Diagram saved to: {filePath}");
