@@ -19,13 +19,13 @@ public class DrawmateContext
         var diagramElement = _serializer.SerializeDiagram(new Diagram("Page-1", new MxId()));
         var mxGraphModelElement = _serializer.SerializeMxGraphModel(new MxGraphModel()
         {
-            Dx = DrawioCommon.MxGraphModelCommon.Dx,
-            Dy = DrawioCommon.MxGraphModelCommon.Dy,
-            PageScale = DrawioCommon.MxGraphModelCommon.PageScale,
-            PageHeight = DrawioCommon.MxGraphModelCommon.PageHeight,
-            PageWidth = DrawioCommon.MxGraphModelCommon.PageWidth,
-            GridSize = DrawioCommon.MxGraphModelCommon.GridSize,
-            MxFlags = DrawioCommon.MxGraphModelCommon.Flags
+            Dx = DrawmateCommon.MxGraphModelCommon.Dx,
+            Dy = DrawmateCommon.MxGraphModelCommon.Dy,
+            PageScale = DrawmateCommon.MxGraphModelCommon.PageScale,
+            PageHeight = DrawmateCommon.MxGraphModelCommon.PageHeight,
+            PageWidth = DrawmateCommon.MxGraphModelCommon.PageWidth,
+            GridSize = DrawmateCommon.MxGraphModelCommon.GridSize,
+            MxFlags = DrawmateCommon.MxGraphModelCommon.Flags
         });
         _xmlBuilder = new XmlBuilder(new XDeclaration("1.0", "utf-8", "yes"), diagramElement, mxGraphModelElement);
     }

@@ -2,7 +2,7 @@ using DrawmateLib.MxGraphModels;
 
 namespace DrawmateLib.Configuration;
 
-public static class DrawioCommon
+public static class DrawmateCommon
 {
     public static class MxGraphModelCommon
     {

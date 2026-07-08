@@ -2,7 +2,6 @@
 using DrawmateLib.DocumentContexts;
 
 var drawmateContext = new DrawmateContext();
-
 var mxStyleBuilder = new MxStyleBuilder();
 var mxCellBuilder = new MxCellBuilder();
 
@@ -10,7 +9,7 @@ var mxCellOne = mxCellBuilder
     .Create(
         "Cell 1",
         mxStyleBuilder.Create().Rectangle().Build(true).Value)
-    .WithGeometry(25.0m, 25.0m, 50, 50)
+    .WithGeometry(400.0m, 400.0m, 50, 50)
     .Build();
 
 var mxCellTwo = mxCellBuilder
@@ -18,6 +17,11 @@ var mxCellTwo = mxCellBuilder
         "Cell 2",
         mxStyleBuilder.Create().Rectangle().Build(true).Value)
     .WithGeometry(100.0m, 100.0m, 50, 50)
+    .Build();
+
+var mxCellThree = mxCellBuilder
+    .Create("Cell 3", mxStyleBuilder.Ellipse().WithAspect("fixed").Build(true).Value)
+    .WithGeometry(200.0m, 200.0m, 80, 80)
     .Build();
 
 var edgeOne = mxCellBuilder
@@ -33,5 +37,6 @@ string filePath = $"{homePath}/Documents/{fileName}";
 
 drawmateContext.AddMxCell(mxCellOne);
 drawmateContext.AddMxCell(mxCellTwo);
+drawmateContext.AddMxCell(mxCellThree);
 drawmateContext.AddMxCell(edgeOne);
 drawmateContext.SaveDiagram(filePath);
