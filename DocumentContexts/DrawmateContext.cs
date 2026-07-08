@@ -35,6 +35,14 @@ public class DrawmateContext
         xmlBuilder.RootElement.Add(serializer.SerializeMxCell(mxCell));
     }
 
+    public void AddMxCells(IEnumerable<MxCell> mxCells)
+    {
+        foreach (var cell in mxCells)
+        {
+            xmlBuilder.RootElement.Add(serializer.SerializeMxCell(cell));
+        }
+    }
+
     public void SaveDiagram(string diagramPath)
     {
         xmlBuilder.RootDocument.Save(diagramPath);

@@ -32,7 +32,7 @@ public class MxCellBuilder
         return this;
     }
 
-    public MxCellBuilder WithConnection(MxId source, MxId target)
+    public MxCellBuilder AsEdge(MxId source, MxId target)
     {
         _source = source;
         _target = target;

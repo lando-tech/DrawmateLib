@@ -12,6 +12,7 @@ public static class MxStyleConstants
         public const string Rhombus = "rhombus";
         public const string Triangle = "triangle";
         public const string Swimlane = "swimlane";
+        public const string Edge = "edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;";
     }
 
     public static class Align

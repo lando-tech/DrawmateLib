@@ -54,7 +54,7 @@ public class MxSerializer
         mxCellElement.Add(new XAttribute(MxAttribute.Edge, mxCell.Edge ? "1" : "0"));
         mxCellElement.Add(new XAttribute(MxAttribute.Vertex, mxCell.Vertex ? "1" : "0"));
 
-        mxCellElement.Add(mxCell.Parent != null ? new XAttribute(MxAttribute.Parent, mxCell.Parent) : null);
+        mxCellElement.Add(mxCell.Parent != null ? new XAttribute(MxAttribute.Parent, mxCell.Parent) : "1");
         mxCellElement.Add(mxCell.Source != null ? new XAttribute(MxAttribute.Source, mxCell.Source.Value) : null);
         mxCellElement.Add(mxCell.Target != null ? new XAttribute(MxAttribute.Target, mxCell.Target.Value) : null);
     }

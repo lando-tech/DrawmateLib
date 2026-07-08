@@ -92,6 +92,12 @@ public class MxStyleBuilder
         return this;
     }
 
+    public MxStyleBuilder AsEdge()
+    {
+        _style.ValueBuilder.Append(MxStyleConstants.Shapes.Edge);
+        return this;
+    }
+
     public MxGraphStyle Build(bool withCommonAttributes)
     {
         if (withCommonAttributes)
