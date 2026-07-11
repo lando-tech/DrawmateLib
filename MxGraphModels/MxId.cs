@@ -22,7 +22,7 @@ public class MxId
     }
 
     /// <summary>
-    ///  Generates a random Id using the count of the node prefixed with '-'.
+    ///  Generates a random Id using the count of the node postfixed with '-'.
     ///  This matches draw.io's internal Id generation.
     /// </summary>
     /// <param name="cellCount">The number assigned to the node</param>
@@ -40,6 +40,10 @@ public class MxId
         return sb.ToString();
     }
 
+    /// <summary>
+    /// Generates a random Id with a default size of 20 characters (draw.io's default size)
+    /// </summary>
+    /// <returns></returns>
     private string GenerateIdWithoutPostfix()
     {
         var rand = new Random();

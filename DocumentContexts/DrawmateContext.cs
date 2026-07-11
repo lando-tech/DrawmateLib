@@ -34,9 +34,9 @@ public class DrawmateContext
     ///  Creates the XmlBuilder instance with the provided top-level XML Elements (Diagram and MxGraphModel)
     /// and the custom XDeclaration
     /// </summary>
-    /// <param name="diagram"></param>
-    /// <param name="mxGraphModel"></param>
-    /// <param name="xDeclaration"></param>
+    /// <param name="diagram">An instance of the Diagram object</param>
+    /// <param name="mxGraphModel">An instance of the MxGraphModel object</param>
+    /// <param name="xDeclaration">An instance of the XDeclaration object</param>
     public DrawmateContext(Diagram diagram, MxGraphModel mxGraphModel, XDeclaration xDeclaration)
     {
         var diagramElement = _serializer.SerializeDiagram(diagram);
@@ -44,11 +44,19 @@ public class DrawmateContext
         _xmlBuilder = new XmlBuilder(xDeclaration, diagramElement, mxGraphModelElement);
     }
 
+    /// <summary>
+    /// Adds the provided MxCell to the root element
+    /// </summary>
+    /// <param name="mxCell">An instance of MxCell</param>
     public void AddMxCell(MxCell mxCell)
     {
         _xmlBuilder.RootElement.Add(_serializer.SerializeMxCell(mxCell));
     }
 
+    /// <summary>
+    /// Iteratively adds MxCells to the root element
+    /// </summary>
+    /// <param name="mxCells">A collection of MxCell objects</param>
     public void AddMxCells(IEnumerable<MxCell> mxCells)
     {
         foreach (var cell in mxCells)
@@ -57,6 +65,10 @@ public class DrawmateContext
         }
     }
 
+    /// <summary>
+    /// Saves the diagram to the given path
+    /// </summary>
+    /// <param name="diagramPath">The path to save the diagram</param>
     public void SaveDiagram(string diagramPath)
     {
         _xmlBuilder.RootDocument.Save(diagramPath);

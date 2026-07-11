@@ -6,7 +6,7 @@ namespace DrawmateLib.MxGraphModels;
 /// multipage XML diagrams.
 /// </summary>
 /// <param name="pageName">The name of the page</param>
-/// <param name="mxId">MxId object</param>
+/// <param name="mxId">An instance of the MxId object</param>
 public class Diagram(string pageName, MxId mxId)
 {
     public string PageName { get; set; } = pageName;

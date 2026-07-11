@@ -4,6 +4,9 @@ namespace DrawmateLib.Configuration;
 
 public static class DrawmateCommon
 {
+    /// <summary>
+    /// A standard configuration for a draw.io diagram
+    /// </summary>
     public static class MxGraphModelCommon
     {
         public const int Dx = 1329;
